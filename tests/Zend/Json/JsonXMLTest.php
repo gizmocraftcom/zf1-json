@@ -19,7 +19,8 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version    $Id$
  */
-
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,8 +28,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Json
  */
+#[Group('Zend_Json')]
 class Zend_Json_JsonXMLTest extends PHPUnit\Framework\TestCase
 {
     /**
@@ -541,9 +542,7 @@ EOT;
         $this->assertNotSame($ex, null, 'Zend_JSON::fromXml returned an exception.');
     } // End of function testUsingXML7
 
-    /**
-     *  @group ZF-3257
-     */
+    #[Group('ZF-3257')]
 
     public function testUsingXML8()
     {
@@ -579,10 +578,8 @@ EOT;
         $this->assertSame('foo', $phpArray['a']['b']['@attributes']['id'], 'The id attribute of b is not correct');
     }
 
-    /**
-     * @group ZF-11385
-     * @dataProvider providerNestingDepthIsHandledProperly
-     */
+    #[Group('ZF-11385')]
+    #[DataProvider('providerNestingDepthIsHandledProperly')]
     public function testNestingDepthIsHandledProperlyWhenNestingDepthExceedsMaximum($xmlStringContents)
     {
         $this->expectException(\Zend_Json_Exception::class);
@@ -591,10 +588,8 @@ EOT;
         Zend_Json::fromXml($xmlStringContents, true);
     }
 
-    /**
-     * @group ZF-11385
-     * @dataProvider providerNestingDepthIsHandledProperly
-     */
+    #[Group('ZF-11385')]
+    #[DataProvider('providerNestingDepthIsHandledProperly')]
     public function testNestingDepthIsHandledProperlyWhenNestingDepthDoesNotExceedMaximum($xmlStringContents)
     {
         try {

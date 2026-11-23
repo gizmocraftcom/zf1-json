@@ -19,7 +19,7 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version    $Id$
  */
-
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,8 +27,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Json
  */
+#[Group('Zend_Json')]
 class Zend_JsonTest extends PHPUnit\Framework\TestCase
 {
     private $_originalUseBuiltinEncoderDecoderValue;
@@ -99,9 +99,7 @@ class Zend_JsonTest extends PHPUnit\Framework\TestCase
         $this->assertEquals(0, $zero, 'Failed 0 integer test. Encoded: ' . serialize(Zend_Json_Encoder::encode(0)));
     }
 
-    /**
-     * @group ZF-10185
-     */
+    #[Group('ZF-10185')]
     public function testJsonPrettyPrintWorksWithArrayNotationInStringLiteral()
     {
         $o       = new stdClass();
@@ -469,8 +467,8 @@ EOB;
     /**
     * test encoding array with Zend_Json_Expr
     *
-    * @group ZF-4946
     */
+    #[Group('ZF-4946')]
     public function testEncodingArrayWithExpr()
     {
         $expr     = new Zend_Json_Expr('window.alert("Zend Json Expr")');
@@ -483,8 +481,8 @@ EOB;
     /**
      * test encoding object with Zend_Json_Expr
      *
-     * @group ZF-4946
      */
+    #[Group('ZF-4946')]
     public function testEncodingObjectWithExprAndInternalEncoder()
     {
         Zend_Json::$useBuiltinEncoderDecoder = true;
@@ -502,8 +500,8 @@ EOB;
     /**
      * test encoding object with Zend_Json_Expr
      *
-     * @group ZF-4946
      */
+    #[Group('ZF-4946')]
     public function testEncodingObjectWithExprAndExtJson()
     {
         if (!function_exists('json_encode')) {
@@ -525,8 +523,8 @@ EOB;
     /**
      * test encoding object with ToJson and Zend_Json_Expr
      *
-     * @group ZF-4946
      */
+    #[Group('ZF-4946')]
     public function testToJsonWithExpr()
     {
         Zend_Json::$useBuiltinEncoderDecoder = true;
@@ -540,8 +538,8 @@ EOB;
     /**
      * Regression tests for Zend_Json_Expr and mutliple keys with the same name.
      *
-     * @group ZF-4946
      */
+    #[Group('ZF-4946')]
     public function testEncodingMultipleNestedSwitchingSameNameKeysWithDifferentJsonExprSettings()
     {
         $data = array(
@@ -569,8 +567,8 @@ EOB;
     /**
      * Regression tests for Zend_Json_Expr and mutliple keys with the same name.
      *
-     * @group ZF-4946
      */
+    #[Group('ZF-4946')]
     public function testEncodingMultipleNestedIteratedSameNameKeysWithDifferentJsonExprSettings()
     {
         $data = array(
@@ -613,9 +611,7 @@ EOB;
         );
     }
 
-    /**
-     * @group ZF-4054
-     */
+    #[Group('ZF-4054')]
     public function testEncodeWithUtf8IsTransformedToPackedSyntax()
     {
         $data   = array('Отмена');
@@ -625,11 +621,11 @@ EOB;
     }
 
     /**
-     * @group ZF-4054
      *
      * This test contains assertions from the Solar Framework by Paul M. Jones
      * @link http://solarphp.com
      */
+    #[Group('ZF-4054')]
     public function testEncodeWithUtf8IsTransformedSolarRegression()
     {
         $expect = '"h\u00c3\u00a9ll\u00c3\u00b6 w\u00c3\u00b8r\u00c5\u201ad"';
@@ -641,9 +637,7 @@ EOB;
         $this->assertEquals('руссиш', Zend_Json_Decoder::decode($expect));
     }
 
-    /**
-     * @group ZF-4054
-     */
+    #[Group('ZF-4054')]
     public function testEncodeUnicodeStringSolarRegression()
     {
         $value    = 'hÃ©llÃ¶ wÃ¸rÅ‚d';
@@ -659,9 +653,7 @@ EOB;
         $this->assertEquals($expected, Zend_Json_Encoder::encodeUnicodeString($value));
     }
 
-    /**
-     * @group ZF-4054
-     */
+    #[Group('ZF-4054')]
     public function testDecodeUnicodeStringSolarRegression()
     {
         $expected = 'hÃ©llÃ¶ wÃ¸rÅ‚d';
@@ -678,11 +670,11 @@ EOB;
     }
 
     /**
-     * @group ZF-4054
      *
      * This test contains assertions from the Solar Framework by Paul M. Jones
      * @link http://solarphp.com
      */
+    #[Group('ZF-4054')]
     public function testEncodeWithUtf8IsTransformedSolarRegressionEqualsJsonExt()
     {
         if (function_exists('json_encode') == false) {
@@ -700,9 +692,7 @@ EOB;
         );
     }
 
-    /**
-     * @group ZF-4946
-     */
+    #[Group('ZF-4946')]
     public function testUtf8JsonExprFinder()
     {
         $data = array('Отмена' => new Zend_Json_Expr('foo'));
@@ -716,9 +706,7 @@ EOB;
         $this->assertEquals('{"\u041e\u0442\u043c\u0435\u043d\u0430":foo}', $result);
     }
 
-    /**
-     * @group ZF-4437
-     */
+    #[Group('ZF-4437')]
     public function testKommaDecimalIsConvertedToCorrectJsonWithDot()
     {
         $localeInfo = localeconv();
@@ -744,9 +732,7 @@ EOB;
         $this->assertEquals($target, Zend_Json::encode($iterator));
     }
 
-    /**
-     * @group ZF-12347
-     */
+    #[Group('ZF-12347')]
     public function testEncodeObjectImplementingIteratorAggregate()
     {
         $iterator = new ZF12347_IteratorAggregate();
@@ -757,9 +743,7 @@ EOB;
     }
 
 
-    /**
-     * @group ZF-8663
-     */
+    #[Group('ZF-8663')]
     public function testNativeJsonEncoderWillProperlyEncodeSolidusInStringValues()
     {
         $source = '</foo><foo>bar</foo>';
@@ -770,9 +754,7 @@ EOB;
         $this->assertEquals($target, Zend_Json::encode($source));
     }
 
-    /**
-     * @group ZF-8663
-     */
+    #[Group('ZF-8663')]
     public function testBuiltinJsonEncoderWillProperlyEncodeSolidusInStringValues()
     {
         $source = '</foo><foo>bar</foo>';
@@ -783,9 +765,7 @@ EOB;
         $this->assertEquals($target, Zend_Json::encode($source));
     }
 
-    /**
-     * @group ZF-8918
-     */
+    #[Group('ZF-8918')]
     public function testDecodingInvalidJsonShouldRaiseAnException()
     {
         $this->expectException(\Zend_Json_Exception::class);
@@ -794,9 +774,9 @@ EOB;
     }
 
     /**
-     * @group ZF-9416
      * Encoding an iterator using the internal encoder should handle undefined keys
      */
+    #[Group('ZF-9416')]
     public function testIteratorWithoutDefinedKey()
     {
         $inputValue       = new ArrayIterator(array('foo'));
@@ -805,9 +785,7 @@ EOB;
         $this->assertEquals($encoded, $expectedDecoding);
     }
 
-    /**
-     * @group ZF-11356
-     */
+    #[Group('ZF-11356')]
     public function testEncoderEscapesNamespacedClassNamesProperly()
     {
         require_once dirname(__FILE__) . '/Json/_files/ZF11356-NamespacedClass.php';
@@ -821,9 +799,7 @@ EOB;
         );
     }
 
-    /**
-     * @group ZF-9577
-     */
+    #[Group('ZF-9577')]
     public function testJsonPrettyPrintWorksWithTxtOutputFormat()
     {
         $o       = new stdClass;
@@ -836,9 +812,7 @@ EOB;
         $this->assertEquals($targetTxtOutput, Zend_Json::prettyPrint($jsonstr));
     }
 
-    /**
-     * @group ZF-9577
-     */
+    #[Group('ZF-9577')]
     public function testJsonPrettyPrintWorksWithHtmlOutputFormat()
     {
         $o       = new stdClass;
@@ -850,9 +824,7 @@ EOB;
         $this->assertEquals($targetHtmlOutput, Zend_Json::prettyPrint($jsonstr, array('format' => 'html')));
     }
 
-    /**
-     * @group ZF-11167
-     */
+    #[Group('ZF-11167')]
     public function testEncodeWillUseToArrayMethodWhenAvailable()
     {
         $o       = new ZF11167_ToArrayClass();
@@ -861,9 +833,7 @@ EOB;
         $this->assertSame($arrJson, $objJson);
     }
 
-    /**
-     * @group ZF-11167
-     */
+    #[Group('ZF-11167')]
     public function testEncodeWillUseToJsonWhenBothToJsonAndToArrayMethodsAreAvailable()
     {
         $o       = new ZF11167_ToArrayToJsonClass();
@@ -873,9 +843,7 @@ EOB;
         $this->assertNotSame($objJson, $arrJson);
     }
 
-    /**
-     * @group ZF-9521
-     */
+    #[Group('ZF-9521')]
     public function testWillEncodeArrayOfObjectsEachWithToJsonMethod()
     {
         $array    = array('one' => new ToJsonClass());
@@ -886,9 +854,7 @@ EOB;
         $this->assertEquals($expected, $json);
     }
 
-    /**
-     * @group ZF-7586
-     */
+    #[Group('ZF-7586')]
     public function testWillDecodeStructureWithEmptyKeyToObjectProperly()
     {
         Zend_Json::$useBuiltinEncoderDecoder = true;

@@ -19,7 +19,7 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version    $Id$
  */
-
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,9 +27,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Json
- * @group      Zend_Json_Server
  */
+#[Group('Zend_Json')]
+#[Group('Zend_Json_Server')]
 class Zend_Json_Server_RequestTest extends PHPUnit\Framework\TestCase
 {
     protected $request;
@@ -237,9 +237,7 @@ class Zend_Json_Server_RequestTest extends PHPUnit\Framework\TestCase
         $this->validateJson($json, $options);
     }
 
-    /**
-     * @group ZF-6187
-     */
+    #[Group('ZF-6187')]
     public function testMethodNamesShouldAllowDotNamespacing()
     {
         $this->request->setMethod('foo.bar');
