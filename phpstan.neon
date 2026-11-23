@@ -7,8 +7,6 @@ parameters:
         - %rootDir%/../../../tests/*
         - %rootDir%/../../../vendor/*
     ignoreErrors:
-        # Method will exit if $method isn't defined (via a $found boolean in a loop)
-        - '#Variable \$method might not be defined\.#'
         -
             message: '#^Parameter &\$value by\-ref type of method Zend_Json\:\:_recursiveJsonExprFinder\(\) expects iterable\|Zend_Json_Expr, string given\.$#'
             identifier: parameterByRef.type
