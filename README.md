@@ -1,7 +1,6 @@
 # Zend Framework 1 - Json
 
 [![Build](https://github.com/gizmocraftcom/zf1-json/workflows/Build/badge.svg?event=push)](https://github.com/gizmocraftcom/zf1-json/actions?query=workflow%3ABuild+event%3Apush)
-[![codecov](https://codecov.io/gh/gizmocraftcom/zf1-json/branch/master/graph/badge.svg)](https://codecov.io/gh/gizmocraftcom/zf1-json)
 [![Latest Stable Version](https://poser.pugx.org/gizmocraft/zendframework1-json/v/stable)](https://packagist.org/packages/gizmocraft/zendframework1-json)
 [![Total Downloads](https://poser.pugx.org/gizmocraft/zendframework1-json/downloads)](https://packagist.org/packages/gizmocraft/zendframework1-json)
 [![License](https://poser.pugx.org/gizmocraft/zendframework1-json/license)](https://packagist.org/packages/gizmocraft/zendframework1-json)
